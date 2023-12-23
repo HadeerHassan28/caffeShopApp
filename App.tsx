@@ -1,10 +1,3 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * @format
- */
-
 import React from 'react';
 import type {PropsWithChildren} from 'react';
 import {
@@ -24,6 +17,7 @@ import {
   LearnMoreLinks,
   ReloadInstructions,
 } from 'react-native/Libraries/NewAppScreen';
+import CustomIcon from './src/components/CustomIcon';
 
 type SectionProps = PropsWithChildren<{
   title: string;
@@ -72,6 +66,7 @@ function App(): React.JSX.Element {
         contentInsetAdjustmentBehavior="automatic"
         style={backgroundStyle}>
         <Header />
+        <CustomIcon name="like" size={100} />
         <View
           style={{
             backgroundColor: isDarkMode ? Colors.black : Colors.white,
