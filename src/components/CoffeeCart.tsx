@@ -70,7 +70,7 @@ const CoffeeCart: React.FC<CoffeeCartProps> = ({
           {' '}
           $ <Text style={styles.CardPrice}> {price}</Text>
         </Text>
-        <TouchableOpacity>
+        <TouchableOpacity onPress={() => {}}>
           <BGIcon
             name="add"
             color={COLORS.primaryWhiteHex}
@@ -136,9 +136,7 @@ const styles = StyleSheet.create({
     fontSize: FONTSIZE.size_16,
   },
   CardPrice: {
-    fontFamily: FONTFAMILY.poppins_semibold,
-    color: COLORS.primaryOrangeHex,
-    fontSize: FONTSIZE.size_16,
+    color: COLORS.primaryWhiteHex,
   },
 });
 export default CoffeeCart;
