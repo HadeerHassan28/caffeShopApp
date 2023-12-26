@@ -62,6 +62,7 @@ const HomeScreen = () => {
     getCoffeeList(categoryIndex.category, CoffeeList),
   );
   const tabBarHeight = useBottomTabBarHeight();
+  console.log(sortedCoffee.prices);
 
   return (
     <View style={styles.ScreenContanier}>
@@ -138,20 +139,20 @@ const HomeScreen = () => {
           data={sortedCoffee}
           contentContainerStyle={styles.FlatListContainer}
           keyExtractor={item => item.id}
-          renderItem={item => {
+          renderItem={({item}) => {
             return (
               <TouchableOpacity>
                 <CoffeeCart
                   name={item.name}
-                  id={}
-                  index={}
-                  type={}
-                  rosted={}
-                  imagelink_square={}
-                  special_ingredient={}
-                  average_rating={}
-                  price={}
-                  buttonPressHandler={}
+                  id={item.id}
+                  index={item.index}
+                  type={item.type}
+                  rosted={item.rosted}
+                  imagelink_square={item.imagelink_square}
+                  special_ingredient={item.special_ingredient}
+                  average_rating={item.average_rating}
+                  price={item.prices[2]}
+                  buttonPressHandler={() => {}}
                 />
               </TouchableOpacity>
             );
