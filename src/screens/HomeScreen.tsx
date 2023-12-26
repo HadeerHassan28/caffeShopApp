@@ -62,7 +62,7 @@ const HomeScreen = () => {
     getCoffeeList(categoryIndex.category, CoffeeList),
   );
   const tabBarHeight = useBottomTabBarHeight();
-  console.log(sortedCoffee.prices);
+  console.log(sortedCoffee[0].prices[0]);
 
   return (
     <View style={styles.ScreenContanier}>
@@ -151,9 +151,10 @@ const HomeScreen = () => {
                   imagelink_square={item.imagelink_square}
                   special_ingredient={item.special_ingredient}
                   average_rating={item.average_rating}
-                  price={item.prices[2]}
+                  price={item.prices[2].price}
                   buttonPressHandler={() => {}}
                 />
+                {console.log(item.prices[2])}
               </TouchableOpacity>
             );
           }}
