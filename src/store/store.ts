@@ -14,6 +14,20 @@ export const useStore = create(
       CartList: [],
       CartPrice: 0,
       OrderHistoryList: [],
+      addToCart: (cartItem: any) =>
+        set(
+          produce(state => {
+            //Logic add to cart
+            let found: boolean = false;
+            for (let i = 0; i < state.CartList.length; i++) {
+              if (state.CartList[i].id === cartItem.id) {
+                found = true;
+                let size: boolean = false;
+                for (let j = 0; j < state.CartList[i].price; j++) {}
+              }
+            }
+          }),
+        ),
     }),
     {
       name: 'coffee-app',

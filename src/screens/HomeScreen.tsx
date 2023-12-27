@@ -47,7 +47,7 @@ const getCoffeeList = (category: string, data: any) => {
   }
 };
 
-const HomeScreen = () => {
+const HomeScreen = ({navigation}: any) => {
   //Data
   const CoffeeList = useStore((state: any) => state.CoffeeList);
   const BeansList = useStore((state: any) => state.BeansList);
@@ -126,6 +126,7 @@ const HomeScreen = () => {
             value={searchText}
             onChangeText={text => {
               setSearchText(text);
+              searchCoffee(text);
             }}
             placeholderTextColor={COLORS.primaryLightGreyHex}
             style={styles.TextInputContanier}
@@ -199,7 +200,10 @@ const HomeScreen = () => {
           keyExtractor={item => item.id}
           renderItem={({item}) => {
             return (
-              <TouchableOpacity onPress={() => {}}>
+              <TouchableOpacity
+                onPress={() => {
+                  navigation.push('Details');
+                }}>
                 <CoffeeCart
                   name={item.name}
                   id={item.id}
@@ -231,7 +235,10 @@ const HomeScreen = () => {
           keyExtractor={item => item.id}
           renderItem={({item}) => {
             return (
-              <TouchableOpacity onPress={() => {}}>
+              <TouchableOpacity
+                onPress={() => {
+                  navigation.push('Details');
+                }}>
                 <CoffeeCart
                   name={item.name}
                   id={item.id}
@@ -321,7 +328,8 @@ const styles = StyleSheet.create({
   EmptyContainer: {
     width: Dimensions.get('window').width - SPACING.space_30 * 2,
     alignItems: 'center',
+    justifyContent: 'center',
+    paddingVertical: SPACING.space_36 * 3.6,
   },
-  CategoryText: {},
 });
 export default HomeScreen;
