@@ -1,9 +1,10 @@
-import {ScrollView, StatusBar, StyleSheet, Text, View} from 'react-native';
+import {ScrollView, StatusBar, StyleSheet, View} from 'react-native';
 import React from 'react';
-import {log} from 'console';
 import {useStore} from '../store/store';
 import {COLORS} from '../theme/theme';
 import ImageBackgroundInfo from '../components/ImageBackgroundInfo';
+import CoffeeDescritipn from '../components/CoffeeDescritipn';
+import PaymentFooter from '../components/PaymentFooter';
 
 const DetailsScreen = ({navigation, route}: any) => {
   const ItemOfIndex = useStore((state: any) =>
@@ -29,6 +30,7 @@ const DetailsScreen = ({navigation, route}: any) => {
       <ScrollView
         showsVerticalScrollIndicator={false}
         contentContainerStyle={styles.ScrollViewwFlex}>
+        {/* Image */}
         <ImageBackgroundInfo
           EnableBackHandler={true}
           imagelink_portrait={ItemOfIndex.imagelink_portrait}
@@ -46,6 +48,14 @@ const DetailsScreen = ({navigation, route}: any) => {
             ToggleFavourite(id, type, favourite);
           }}
         />
+        {/* Description and Size*/}
+        <CoffeeDescritipn
+          Description={ItemOfIndex.description}
+          prices={ItemOfIndex.prices}
+          type={ItemOfIndex.prices}
+        />
+        {/* Payment */}
+        <PaymentFooter />
       </ScrollView>
     </View>
   );
