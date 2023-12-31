@@ -1,5 +1,6 @@
-import {StyleSheet, Text, View} from 'react-native';
+import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import React from 'react';
+import {COLORS, FONTFAMILY, FONTSIZE, SPACING} from '../theme/theme';
 
 interface PriceProps {
   price: string;
@@ -12,13 +13,47 @@ interface PaymentFooterProps {
   bottonTitle: string;
 }
 
-const PaymentFooter: React.FC<PaymentFooterProps> = ({}) => {
+const PaymentFooter: React.FC<PaymentFooterProps> = ({
+  price,
+  buttonPressableHandler,
+  bottonTitle,
+}) => {
   return (
-    <View>
-      <Text>PaymentFppter</Text>
+    <View style={styles.PriceFooter}>
+      <View style={styles.PriceContainer}>
+        <Text style={styles.PriceTitle}>Price</Text>
+        <Text style={styles.PriceText}>
+          {price.currency}
+          <Text style={styles.Price}>{price.price}</Text>
+        </Text>
+      </View>
+      <TouchableOpacity style={styles.PayButton}>
+        <Text style={styles.ButtonText}> {bottonTitle}</Text>
+      </TouchableOpacity>
     </View>
   );
 };
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  PriceFooter: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+    gap: SPACING.space_20,
+    padding: SPACING.space_20,
+  },
+  PriceContainer: {
+    alignItems: 'center',
+    width: 100,
+  },
+  PriceTitle: {
+    fontFamily: FONTFAMILY.poppins_medium,
+    fontSize: FONTSIZE.size_14,
+    color: COLORS.primaryLightGreyHex,
+  },
+  PriceText: {},
+  Price: {},
+  PayButton: {},
+  ButtonText: {},
+});
 export default PaymentFooter;
