@@ -17,7 +17,7 @@ import {
   SPACING,
 } from '../theme/theme';
 import ImageBackgroundInfo from '../components/ImageBackgroundInfo';
-import CoffeeDescritipn from '../components/CoffeeDescritipn';
+
 import PaymentFooter from '../components/PaymentFooter';
 
 const DetailsScreen = ({navigation, route}: any) => {
@@ -29,6 +29,9 @@ const DetailsScreen = ({navigation, route}: any) => {
   const deleteFromFavoriteList = useStore(
     (state: any) => state.deleteFromFavoriteList,
   );
+  const addToCart = useStore((state: any) => state.addToCart);
+  const calculateCartPrice = useStore((state: any) => state.calculateCartPrice);
+
   const [fullDescription, setFullDescription] = useState(false);
   const [price, setPrice] = useState(ItemOfIndex.prices[0]);
 
@@ -38,6 +41,30 @@ const DetailsScreen = ({navigation, route}: any) => {
 
   const BackHandler = () => {
     navigation.pop();
+  };
+
+  const addToCartHandler = ({
+    id,
+    index,
+    name,
+    roasted,
+    imagelink_square,
+    special_ingredient,
+    type,
+    price,
+  }: any) => {
+    addToCart({
+      id,
+      index,
+      name,
+      roasted,
+      imagelink_square,
+      special_ingredient,
+      type,
+      prices: [{...price, quantity: 1}],
+    });
+    calculateCartPrice();
+    navigation.navigate('Cart');
   };
 
   return (
@@ -127,7 +154,18 @@ const DetailsScreen = ({navigation, route}: any) => {
         {/* Payment */}
         <PaymentFooter
           price={price}
-          buttonPressableHandler={() => {}}
+          buttonPressableHandler={() => {
+            addToCartHandler({
+              id: ItemOfIndex.id,
+              index: ItemOfIndex.index,
+              name: ItemOfIndex.name,
+              rosted: ItemOfIndex.rosted,
+              imagelink_square: ItemOfIndex.imagelink_square,
+              special_ingredient: ItemOfIndex.special_ingredient,
+              type: ItemOfIndex.type,
+              price: price,
+            });
+          }}
           bottonTitle="Add to Cart"
         />
       </ScrollView>
@@ -142,6 +180,7 @@ const styles = StyleSheet.create({
   },
   ScrollViewwFlex: {
     flexGrow: 1,
+    justifyContent: 'space-between',
   },
   FooterInfoArea: {
     padding: SPACING.space_20,
