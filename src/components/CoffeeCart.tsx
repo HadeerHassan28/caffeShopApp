@@ -24,7 +24,7 @@ interface CoffeeCartProps {
   id: string;
   index: number;
   type: string;
-  rosted: string;
+  roasted: string;
   imagelink_square: ImageProps;
   name: string;
   special_ingredient: string;
@@ -36,7 +36,7 @@ const CoffeeCart: React.FC<CoffeeCartProps> = ({
   id,
   index,
   type,
-  rosted,
+  roasted,
   imagelink_square,
   name,
   special_ingredient,
@@ -76,7 +76,7 @@ const CoffeeCart: React.FC<CoffeeCartProps> = ({
               id,
               index,
               type,
-              rosted,
+              roasted,
               name,
               imagelink_square,
               special_ingredient,

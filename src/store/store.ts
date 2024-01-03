@@ -55,23 +55,22 @@ export const useStore = create(
       calculateCartPrice: () =>
         set(
           produce(state => {
-            let totalPrice: number = 0;
+            let totalprice = 0;
             for (let i = 0; i < state.CartList.length; i++) {
-              let tempPrice: number = 0; //Pirce of item
+              let tempprice = 0;
               for (let j = 0; j < state.CartList[i].prices.length; j++) {
-                tempPrice =
-                  tempPrice +
+                tempprice =
+                  tempprice +
                   parseFloat(state.CartList[i].prices[j].price) *
                     state.CartList[i].prices[j].quantity;
               }
-              //New property in cartlist called itemPrice
-              state.CartList[i].itemPrice = tempPrice.toFixed(2).toString();
-              //Calculate total price
-              totalPrice = totalPrice + tempPrice;
+              state.CartList[i].ItemPrice = tempprice.toFixed(2).toString();
+              totalprice = totalprice + tempprice;
             }
-            state.CartPrice = totalPrice.toFixed(2).toString();
+            state.CartPrice = totalprice.toFixed(2).toString();
           }),
         ),
+
       addToFavoriteList: (type: string, id: string) =>
         set(
           produce(state => {
@@ -178,7 +177,7 @@ export const useStore = create(
           produce(state => {
             let temp = state.CartList.reduce(
               (accumulator: number, currentValue: any) =>
-                accumulator + parseFloat(currentValue.itemPrice),
+                accumulator + parseFloat(currentValue.ItemPrice),
             );
             let currentCartToltalPrice = temp.toFixed(2).toString();
             if (state.OrderHistoryList.length > 0) {

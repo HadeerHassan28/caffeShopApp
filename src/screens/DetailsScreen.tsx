@@ -53,6 +53,8 @@ const DetailsScreen = ({navigation, route}: any) => {
     type,
     price,
   }: any) => {
+    console.log(roasted);
+
     addToCart({
       id,
       index,
@@ -159,7 +161,7 @@ const DetailsScreen = ({navigation, route}: any) => {
               id: ItemOfIndex.id,
               index: ItemOfIndex.index,
               name: ItemOfIndex.name,
-              rosted: ItemOfIndex.rosted,
+              roasted: ItemOfIndex.roasted,
               imagelink_square: ItemOfIndex.imagelink_square,
               special_ingredient: ItemOfIndex.special_ingredient,
               type: ItemOfIndex.type,

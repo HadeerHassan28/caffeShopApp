@@ -1,11 +1,20 @@
-import {ScrollView, StatusBar, StyleSheet, Text, View} from 'react-native';
+import {
+  ScrollView,
+  StatusBar,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
+} from 'react-native';
 import React from 'react';
 import {useStore} from '../store/store';
 import {useBottomTabBarHeight} from '@react-navigation/bottom-tabs';
-import {COLORS} from '../theme/theme';
+import {COLORS, SPACING} from '../theme/theme';
 import HeaderBar from '../components/HeaderBar';
 import EmptyListAnimation from '../components/EmptyListAnimation';
-const CartScreen = () => {
+import PaymentFooter from '../components/PaymentFooter';
+import CartItem from '../components/CartItem';
+const CartScreen = ({navigation, route}: any) => {
   const tabHightButtonBar = useBottomTabBarHeight();
 
   const CartList = useStore((state: any) => state.CartList);
@@ -21,10 +30,13 @@ const CartScreen = () => {
   );
   const calculateCartPrice = useStore((state: any) => state.calculateCartPrice);
 
+  const buttonPressableHandler = () => {
+    navigation.push('Payment');
+  };
   // while (CartList.length > 0) {
   //   CartList.pop();
   // }
-  console.log(CartList.length, CartList);
+  console.log('CartList ', CartList);
 
   return (
     <View style={styles.ScreenContainer}>
@@ -42,9 +54,38 @@ const CartScreen = () => {
             {CartList.length === 0 ? (
               <EmptyListAnimation title="Cart is Empty" />
             ) : (
-              <></>
+              <View style={styles.ListItemContainer}>
+                {CartList.map((data: any) => (
+                  <>
+                    <TouchableOpacity onPress={() => {}} key={data.id}>
+                      <CartItem
+                        id={data.id}
+                        name={data.name}
+                        roasted={data.roasted}
+                        imagelink_square={data.imagelink_square}
+                        special_ingredient={data.special_ingredient}
+                        prices={data.prices}
+                        type={data.type}
+                        incrementCartItemQuantity={() => {}}
+                        decrementCartItemQuantity={() => {}}
+                      />
+                    </TouchableOpacity>
+                  </>
+                ))}
+              </View>
             )}
           </View>
+          {CartList.length !== 0 ? (
+            <PaymentFooter
+              bottonTitle="Pay"
+              price={{price: CartPrice, currency: '$'}}
+              buttonPressableHandler={() => {
+                buttonPressableHandler();
+              }}
+            />
+          ) : (
+            <></>
+          )}
         </View>
       </ScrollView>
     </View>
@@ -65,6 +106,10 @@ const styles = StyleSheet.create({
   },
   ItemContainer: {
     flex: 1,
+  },
+  ListItemContainer: {
+    paddingHorizontal: SPACING.space_20,
+    gap: SPACING.space_20,
   },
 });
 export default CartScreen;

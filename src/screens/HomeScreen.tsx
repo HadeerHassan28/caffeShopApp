@@ -245,7 +245,7 @@ const HomeScreen = ({navigation}: any) => {
                   id={item.id}
                   index={item.index}
                   type={item.type}
-                  rosted={item.rosted}
+                  roasted={item.roasted}
                   imagelink_square={item.imagelink_square}
                   special_ingredient={item.special_ingredient}
                   average_rating={item.average_rating}
@@ -284,7 +284,7 @@ const HomeScreen = ({navigation}: any) => {
                   id={item.id}
                   index={item.index}
                   type={item.type}
-                  rosted={item.rosted}
+                  roasted={item.rosted}
                   imagelink_square={item.imagelink_square}
                   special_ingredient={item.special_ingredient}
                   average_rating={item.average_rating}
