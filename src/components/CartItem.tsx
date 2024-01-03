@@ -1,4 +1,11 @@
-import {Image, ImageProps, StyleSheet, Text, View} from 'react-native';
+import {
+  Image,
+  ImageProps,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
+} from 'react-native';
 import React from 'react';
 import LinearGradient from 'react-native-linear-gradient';
 import {
@@ -8,6 +15,7 @@ import {
   FONTSIZE,
   SPACING,
 } from '../theme/theme';
+import CustomIcon from './CustomIcon';
 
 interface CartItemProps {
   id: string;
@@ -32,11 +40,12 @@ const CartItem: React.FC<CartItemProps> = ({
   incrementCartItemQuantity,
   decrementCartItemQuantity,
 }) => {
-  // console.log(roasted, id);
+  // console.log(prices);
 
   return (
     <View>
       {prices.length !== 1 ? (
+        // multiSize
         <LinearGradient
           start={{x: 0, y: 0}}
           end={{x: 1, y: 1}}
@@ -71,27 +80,53 @@ const CartItem: React.FC<CartItemProps> = ({
                     {data.size}
                   </Text>
                 </View>
+                <Text style={styles.SizeCurrency}>
+                  {data.currency}{' '}
+                  <Text style={styles.SizePrice}>{data.price}</Text>
+                </Text>
+              </View>
+              <View style={styles.CartItemSizeValuesContainer}>
+                {/* - */}
+                <TouchableOpacity
+                  onPress={() => {
+                    decrementCartItemQuantity(id, data.size);
+                  }}
+                  style={styles.CartItemIcon}>
+                  <CustomIcon
+                    name="minus"
+                    color={COLORS.primaryWhiteHex}
+                    size={FONTSIZE.size_10}
+                  />
+                </TouchableOpacity>
+                {/* Qantity */}
+                <View style={styles.CartItemQuantityContainer}>
+                  <Text style={styles.CartItemQauntity}>{data.quantity}</Text>
+                </View>
+                {/* + */}
+                <TouchableOpacity
+                  onPress={() => {
+                    incrementCartItemQuantity(id, data.size);
+                  }}
+                  style={styles.CartItemIcon}>
+                  <CustomIcon
+                    name="add"
+                    color={COLORS.primaryWhiteHex}
+                    size={FONTSIZE.size_10}
+                  />
+                </TouchableOpacity>
               </View>
             </View>
           ))}
         </LinearGradient>
       ) : (
-        <></>
-        // <LinearGradient
-        //   start={{x: 0, y: 0}}
-        //   end={{x: 1, y: 1}}
-        //   colors={[COLORS.primaryGreyHex, COLORS.primaryBlackHex]}
-        //   style={styles.CartItemLinearGrad}>
-        //   <View style={styles.CartItemRow}>
-        //     <Image source={imagelink_square} style={styles.CartItemImage} />
-        //     <View style={styles.CartItemInfo}>
-        //       <View>
-        //         <Text>{name}</Text>
-        //         <Text>{name}</Text>
-        //       </View>
-        //     </View>
-        //   </View>
-        // </LinearGradient>
+        //  SingleSize
+        <LinearGradient
+          start={{x: 0, y: 0}}
+          end={{x: 1, y: 1}}
+          colors={[COLORS.primaryGreyHex, COLORS.primaryBlackHex]}
+          style={styles.CartItemLinearGrad}>
+          <View></View>
+        </LinearGradient>
       )}
     </View>
   );
@@ -158,14 +193,42 @@ const styles = StyleSheet.create({
   SizeBox: {
     backgroundColor: COLORS.primaryBlackHex,
     height: 40,
-    width: 100,
+    width: 90,
     borderRadius: BORDERRADIUS.radius_10,
     justifyContent: 'center',
     alignItems: 'center',
   },
   SizeText: {
     fontFamily: FONTFAMILY.poppins_medium,
-    color: COLORS.primaryLightGreyHex,
+    color: COLORS.primaryWhiteHex,
+  },
+  SizeCurrency: {
+    fontFamily: FONTFAMILY.poppins_semibold,
+    color: COLORS.primaryOrangeHex,
+    fontSize: FONTSIZE.size_18,
+  },
+  SizePrice: {
+    color: COLORS.primaryWhiteHex,
+  },
+  CartItemIcon: {
+    backgroundColor: COLORS.primaryOrangeHex,
+    padding: SPACING.space_12,
+    borderRadius: BORDERRADIUS.radius_10,
+  },
+  CartItemQuantityContainer: {
+    backgroundColor: COLORS.primaryBlackHex,
+    width: 70,
+    borderRadius: BORDERRADIUS.radius_10,
+    borderWidth: 2,
+    borderColor: COLORS.primaryOrangeHex,
+    alignItems: 'center',
+    justifyContent: 'center',
+    paddingVertical: SPACING.space_4,
+  },
+  CartItemQauntity: {
+    fontFamily: FONTFAMILY.poppins_semibold,
+    color: COLORS.primaryWhiteHex,
+    fontSize: FONTSIZE.size_16,
   },
 });
 export default CartItem;
