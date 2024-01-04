@@ -46,7 +46,7 @@ const CartScreen = ({navigation, route}: any) => {
   // while (CartList.length > 0) {
   //   CartList.pop();
   // }
-  console.log('CartList ', CartList);
+  // console.log('CartList ', CartList);
 
   return (
     <View style={styles.ScreenContainer}>
@@ -65,9 +65,17 @@ const CartScreen = ({navigation, route}: any) => {
               <EmptyListAnimation title="Cart is Empty" />
             ) : (
               <View style={styles.ListItemContainer}>
-                {CartList.map((data: any, index: any) => (
+                {CartList.map((data: any) => (
                   <>
-                    <TouchableOpacity onPress={() => {}} key={data.id}>
+                    <TouchableOpacity
+                      onPress={() => {
+                        navigation.push('Details', {
+                          index: data.index,
+                          id: data.id,
+                          type: data.type,
+                        });
+                      }}
+                      key={data.id}>
                       <CartItem
                         id={data.id}
                         name={data.name}
