@@ -11,6 +11,9 @@ import {COLORS, FONTFAMILY, FONTSIZE, SPACING} from '../theme/theme';
 import GradientBGIcon from '../components/GradientBGIcon';
 import PaymentMethod from '../components/PaymentMethod';
 import PaymentFooter from '../components/PaymentFooter';
+import LinearGradient from 'react-native-linear-gradient';
+import {Colors} from 'react-native/Libraries/NewAppScreen';
+import CustomIcon from '../components/CustomIcon';
 
 const PaymentList = [
   {name: 'Wallet', icon: 'icon', isIcon: true},
@@ -61,7 +64,40 @@ const PaymentScreen = ({navigation, route}: any) => {
 
         <View style={styles.PaymentActionContainer}>
           {/* Card */}
-          <TouchableOpacity></TouchableOpacity>
+          <TouchableOpacity onPress={() => setPaymentMode('Credit Card')}>
+            <View
+              style={[
+                styles.CreditCardContainer,
+                {
+                  borderColor:
+                    paymentMode === 'Credit Card'
+                      ? COLORS.primaryOrangeHex
+                      : COLORS.primaryGreyHex,
+                },
+              ]}>
+              <Text style={styles.CreditCardTitle}>Credit Card</Text>
+              <View style={styles.CreditCardBg}>
+                <LinearGradient
+                  start={{x: 0, y: 0}}
+                  end={{x: 1, y: 1}}
+                  colors={[COLORS.primaryGreyHex, COLORS.primaryBlackHex]}
+                  style={styles.LinearGradientStyles}>
+                  <View style={styles.CreditCardRow}>
+                    <CustomIcon
+                      name="chip"
+                      color={COLORS.primaryOrangeHex}
+                      size={FONTSIZE.size_14}
+                    />
+                    <CustomIcon
+                      name="chip"
+                      color={COLORS.primaryOrangeHex}
+                      size={FONTSIZE.size_14}
+                    />
+                  </View>
+                </LinearGradient>
+              </View>
+            </View>
+          </TouchableOpacity>
           {/* Method */}
           {PaymentList.map((data: any, index: any) => (
             <TouchableOpacity
@@ -118,5 +154,15 @@ const styles = StyleSheet.create({
     padding: SPACING.space_15,
     gap: SPACING.space_15,
   },
+  CreditCardContainer: {},
+  CreditCardTitle: {
+    color: COLORS.primaryWhiteHex,
+    fontFamily: FONTFAMILY.poppins_semibold,
+    fontSize: FONTSIZE.size_16,
+  },
+  CreditCardBg: {
+    backgroundColor: COLORS.primaryLightGreyHex,
+  },
+  LinearGradientStyles: {},
 });
 export default PaymentScreen;
