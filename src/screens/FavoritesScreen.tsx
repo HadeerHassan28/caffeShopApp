@@ -1,6 +1,5 @@
 import {
   StyleSheet,
-  Text,
   View,
   ScrollView,
   StatusBar,
@@ -12,7 +11,7 @@ import {useBottomTabBarHeight} from '@react-navigation/bottom-tabs';
 import {COLORS, SPACING} from '../theme/theme';
 import HeaderBar from '../components/HeaderBar';
 import EmptyListAnimation from '../components/EmptyListAnimation';
-import CartItem from '../components/CartItem';
+
 import FavoritesItemCard from '../components/FavoritesItemCard';
 
 const FavoritesScreen = ({navigation}: any) => {
@@ -25,7 +24,7 @@ const FavoritesScreen = ({navigation}: any) => {
   const ToggleFavourite = (id: string, type: string, favourite: boolean) => {
     favourite ? deleteFromFavoriteList(type, id) : addToFavoriteList(type, id);
   };
-  console.log(FavoritesList);
+  //console.log(FavoritesList);
 
   return (
     <View style={styles.ScreenContainer}>

@@ -9,7 +9,6 @@ import HomeScreen from '../screens/HomeScreen';
 import OrderHistoryScreen from '../screens/OrderHistoryScreen';
 import {COLORS} from '../theme/theme';
 import {BlurView} from '@react-native-community/blur';
-import {Colors} from 'react-native/Libraries/NewAppScreen';
 
 const Tab = createBottomTabNavigator();
 const TabNavigator = () => {

@@ -2,7 +2,6 @@ import {
   ScrollView,
   StatusBar,
   StyleSheet,
-  Text,
   TouchableOpacity,
   View,
 } from 'react-native';
@@ -25,13 +24,11 @@ const CartScreen = ({navigation, route}: any) => {
   const decrementCartItemQuantity = useStore(
     (state: any) => state.decrementCartItemQuantity,
   );
-  const addToOrderHistoryListFromCart = useStore(
-    (state: any) => state.addToOrderHistoryListFromCart,
-  );
+
   const calculateCartPrice = useStore((state: any) => state.calculateCartPrice);
 
   const buttonPressableHandler = () => {
-    navigation.push('Payment');
+    navigation.push('Payment', {amount: CartPrice});
   };
 
   const incrementCartItemQuantities = (id: string, size: string) => {
