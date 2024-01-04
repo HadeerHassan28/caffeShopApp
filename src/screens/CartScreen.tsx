@@ -33,6 +33,16 @@ const CartScreen = ({navigation, route}: any) => {
   const buttonPressableHandler = () => {
     navigation.push('Payment');
   };
+
+  const incrementCartItemQuantities = (id: string, size: string) => {
+    incrementCartItemQuantity(id, size);
+    calculateCartPrice();
+  };
+
+  const decrementCartItemQuantities = (id: string, size: string) => {
+    decrementCartItemQuantity(id, size);
+    calculateCartPrice();
+  };
   // while (CartList.length > 0) {
   //   CartList.pop();
   // }
@@ -55,7 +65,7 @@ const CartScreen = ({navigation, route}: any) => {
               <EmptyListAnimation title="Cart is Empty" />
             ) : (
               <View style={styles.ListItemContainer}>
-                {CartList.map((data: any) => (
+                {CartList.map((data: any, index: any) => (
                   <>
                     <TouchableOpacity onPress={() => {}} key={data.id}>
                       <CartItem
@@ -66,8 +76,18 @@ const CartScreen = ({navigation, route}: any) => {
                         special_ingredient={data.special_ingredient}
                         prices={data.prices}
                         type={data.type}
-                        incrementCartItemQuantity={() => {}}
-                        decrementCartItemQuantity={() => {}}
+                        incrementCartItemQuantity={(
+                          id: string,
+                          size: string,
+                        ) => {
+                          incrementCartItemQuantities(id, size);
+                        }}
+                        decrementCartItemQuantity={(
+                          id: string,
+                          size: string,
+                        ) => {
+                          decrementCartItemQuantities(id, size);
+                        }}
                       />
                     </TouchableOpacity>
                   </>
