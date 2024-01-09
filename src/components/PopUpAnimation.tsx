@@ -27,7 +27,7 @@ const styles = StyleSheet.create({
     bottom: 0,
     left: 0,
     zIndex: 3,
-    backgroundColor: COLORS.primaryBlackRGBA,
+    backgroundColor: COLORS.secondaryBlackRGBA,
     justifyContent: 'center',
   },
 });
