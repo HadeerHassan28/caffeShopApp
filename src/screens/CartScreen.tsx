@@ -43,7 +43,7 @@ const CartScreen = ({navigation, route}: any) => {
   // while (CartList.length > 0) {
   //   CartList.pop();
   // }
-  // console.log('CartList ', CartList);
+  console.log('CartList ', CartList);
 
   return (
     <View style={styles.ScreenContainer}>
@@ -65,14 +65,14 @@ const CartScreen = ({navigation, route}: any) => {
                 {CartList.map((data: any) => (
                   <>
                     <TouchableOpacity
+                      key={data.id}
                       onPress={() => {
                         navigation.push('Details', {
                           index: data.index,
                           id: data.id,
                           type: data.type,
                         });
-                      }}
-                      key={data.id}>
+                      }}>
                       <CartItem
                         id={data.id}
                         name={data.name}

@@ -188,7 +188,7 @@ export const useStore = create(
                   ' ' +
                   new Date().toLocaleTimeString(),
                 CartList: state.CartList,
-                CartListPrice: temp.toFixed(2).toString(),
+                CartListPrice: temp.toString(),
               });
             } else {
               state.OrderHistoryList.push({
